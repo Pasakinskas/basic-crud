@@ -9,19 +9,23 @@
       <% include ../partials/header %>
     </header>
     
-    <main>
-      <div>
-        <ul class="quotes">
-        <% for(var i=0; i<quotes.length; i++) {%>
-          <li class="quote">
-            <span><%= quotes[i].name %></span>
-            <span><%= quotes[i].quote %></span>
+    <main class="page-body">
+      <div class="text-center row">
+        <h1>My to-do list:</h1>
+        <div class="col-md-4"></div>
+        <ul class="data-list col-md-4">
+        <% for(let i=0; i<quotes.length; i++) {%>
+          <li class="row data-li">
+            <div class="col-xs-3"><span><%= quotes[i].name %></span></div>
+            <div class="col-xs-6"><span><%= quotes[i].quote %></span></div>
+            <div class="col-xs-3"><button class="btn" id="<%= quotes[i]._id %>">Solve!</button></div>
           </li>
         <% } %>
         </ul>
       </div>
 
-      <div>
+      <div class="text-center block">
+        <h2>Add a new To-do here:</h2>
         <form action="/quotes" method="POST">
           <input type="text" placeholder="name" name="name">
           <input type="text" placeholder="quote" name="quote">
@@ -29,13 +33,15 @@
         </form>
     </div>
 
-      <div>
+      <div class="text-center block">
         <h2>Magical button of replacement</h2>
+        <p>(Currently out of order)</p>
         <button id="update">Activate!</button>
       </div>
 
       <script scr="main.js"></script>
   </main>
+
   <footer>
     <% include ../partials/footer %>
   </footer>

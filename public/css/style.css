@@ -4,6 +4,23 @@
     border-radius: 2px;
   }
 
-  .footer-links {
-      padding: 10px 0 5px 25px;
-  }
+.footer-links {
+    padding: 10px 0 5px 25px;
+}
+
+.page-body {
+    background-color: blanchedalmond;
+}
+
+.data-list {
+list-style-type: none;
+}
+
+.data-li {
+    border: 2px solid wheat;
+    margin-top: 2px;
+}
+
+.block {
+    padding: 0 25px 25px 25px;
+}

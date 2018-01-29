@@ -1,4 +1,5 @@
 let update = document.getElementById('update');
+let delOne = document.getElementById('delete');
 
 update.addEventListener('click', () => {
     fetch('crud-example', {

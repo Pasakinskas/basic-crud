@@ -36,19 +36,19 @@ app.post('/quotes', (req, res) => {
     });
   });
 
-  app.put('/quotes', (req, res) => {
-    db.collection('crud-example').findOneAndUpdate(
-        {name: 'covfefe'}, {
-        $set: {
-            name: req.body.name,
-            quote: req.body.quote
-        }
-        }, {
-        sort: {_id: -1},
-        upsert: true       
-        },
-        (err, result) => {
-            if (err) res.send(err);
-            res.send(result);
-        });
-  });
+app.put('/quotes', (req, res) => {
+db.collection('crud-example').findOneAndUpdate(
+    {name: 'covfefe'}, {
+    $set: {
+        name: req.body.name,
+        quote: req.body.quote
+    }
+    }, {
+    sort: {_id: -1},
+    upsert: true       
+    },
+    (err, result) => {
+        if (err) res.send(err);
+        res.send(result);
+    });
+});
