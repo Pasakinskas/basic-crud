@@ -1,13 +1,14 @@
 let update = document.getElementById('update');
-let delOne = document.getElementById('delete');
+let deleteItem = document.getElementsByClassName('btn-delete');
+console.log(deleteItem);
 
 update.addEventListener('click', () => {
-    fetch('crud-example', {
+    fetch('quotes', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          'name': 'Updating',
-          'quote': 'Is a very important procedure to learn'
+          'name': 'Hobby',
+          'quote': " is too fun to be on the list"
         })
       }).then(res => {
         if (res.ok) return res.json()
@@ -19,3 +20,23 @@ update.addEventListener('click', () => {
         window.location.reload(true)
       })
 });
+
+for (let item of deleteItem) {
+  item.addEventListener('click', () => {
+    fetch('quotes', {
+      method: 'delete',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      body: JSON.stringify({
+        _id: item.id
+      })
+    }).then(res => {
+      if (res.ok) return res.json()
+    })
+    .then(data => {
+      console.log(data)
+  }).then(data => {
+      console.log(data)
+      window.location.reload(true)
+    })
+  });
+}

@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID;
 const mongoLink = 'mongodb://Droztukas1:mmm03240742@ds123371.mlab.com:23371/crud-tutorial';
 
 app.set('view engine', 'ejs');
@@ -22,7 +23,7 @@ MongoClient.connect(mongoLink, (error, database) => {
 });
 
 app.get('/',(req, res) => {
-        db.collection('crud-example').find().toArray((err, result) => {
+    db.collection('crud-example').find().toArray((err, result) => {
         if (err) return console.log(err);
         res.render('pages/index.ejs', {quotes: result})
     });
@@ -37,18 +38,28 @@ app.post('/quotes', (req, res) => {
   });
 
 app.put('/quotes', (req, res) => {
-db.collection('crud-example').findOneAndUpdate(
-    {name: 'covfefe'}, {
-    $set: {
-        name: req.body.name,
-        quote: req.body.quote
-    }
-    }, {
-    sort: {_id: -1},
-    upsert: true       
-    },
-    (err, result) => {
-        if (err) res.send(err);
-        res.send(result);
-    });
+    db.collection('crud-example').findOneAndUpdate(
+        {name: 'Cook'}, {
+        $set: {
+            name: req.body.name,
+            quote: req.body.quote
+        }
+        }, {
+        sort: {_id: -1},
+        upsert: true       
+        },
+        (err, result) => {
+            if (err) res.send(err);
+            res.send(result);
+        });
+});
+
+app.delete('/quotes', (req, res) => {
+    console.log(req.body);
+    db.collection('crud-example').findOneAndDelete({'_id': ObjectId(req.body._id)},
+        (err, result) => {
+            if (err) return res.send(500, err);
+            res.send({message: "to do deleted"});
+        }
+    );
 });

@@ -18,7 +18,7 @@
           <li class="row data-li">
             <div class="col-xs-3"><span><%= quotes[i].name %></span></div>
             <div class="col-xs-6"><span><%= quotes[i].quote %></span></div>
-            <div class="col-xs-3"><button class="btn" id="<%= quotes[i]._id %>">Solve!</button></div>
+            <div class="col-xs-3"><button class="btn btn-delete" id="<%= quotes[i]._id %>">Solve!</button></div>
           </li>
         <% } %>
         </ul>
@@ -35,11 +35,11 @@
 
       <div class="text-center block">
         <h2>Magical button of replacement</h2>
-        <p>(Currently out of order)</p>
+        <p>(Replaces cooking tasks, because they dont require effort)</p>
         <button id="update">Activate!</button>
       </div>
 
-      <script scr="main.js"></script>
+      <script src="main.js"></script>
   </main>
 
   <footer>
