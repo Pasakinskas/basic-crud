@@ -1,6 +1,5 @@
 let update = document.getElementById('update');
 let deleteItem = document.getElementsByClassName('btn-delete');
-console.log(deleteItem);
 
 update.addEventListener('click', () => {
     fetch('quotes', {
@@ -12,13 +11,9 @@ update.addEventListener('click', () => {
         })
       }).then(res => {
         if (res.ok) return res.json()
-      })
-      .then(data => {
+      }).then(data => {
         console.log(data)
-    }).then(data => {
-        console.log(data)
-        window.location.reload(true)
-      })
+    })
 });
 
 for (let item of deleteItem) {
@@ -26,17 +21,12 @@ for (let item of deleteItem) {
     fetch('quotes', {
       method: 'delete',
       headers: new Headers({'Content-Type': 'application/json'}),
-      body: JSON.stringify({
-        _id: item.id
-      })
+      body: JSON.stringify({_id: item.id})
     }).then(res => {
       if (res.ok) return res.json()
-    })
-    .then(data => {
-      console.log(data)
-  }).then(data => {
+    }).then(data => {
       console.log(data)
       window.location.reload(true)
     })
-  });
-}
+  })
+};
