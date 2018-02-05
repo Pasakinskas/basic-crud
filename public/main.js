@@ -1,7 +1,7 @@
-let update = document.getElementById('update');
-let deleteItem = document.getElementsByClassName('btn-delete');
+let updateButton = document.getElementById('update');
+let deleteItemButton = document.getElementsByClassName('btn-delete');
 
-update.addEventListener('click', () => {
+updateButton.addEventListener('click', () => {
     fetch('quotes', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -13,10 +13,11 @@ update.addEventListener('click', () => {
         if (res.ok) return res.json()
       }).then(data => {
         console.log(data)
+        window.location.reload(true)
     })
 });
 
-for (let item of deleteItem) {
+for (let item of deleteItemButton) {
   item.addEventListener('click', () => {
     fetch('quotes', {
       method: 'delete',

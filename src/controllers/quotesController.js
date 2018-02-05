@@ -10,7 +10,8 @@ const quotesController = {
                 };
                 console.log('Saved successfuly');
                 res.redirect('/');
-            });
+            }
+        );
     },
 
     replaceQuote(req, res) {
@@ -19,13 +20,14 @@ const quotesController = {
             quote: req.body.quote
         }}, 
         { sort: {_id: -1}, upsert: false},
-        (err, result) => {
-            if (err) {
-                console.error(err);
-                return;
-            };
-            res.send({result});
-        });
+            (err, result) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                };
+                res.send({message: "replaced!"});
+            }
+        );
     },
 
     deleteQuote(req, res) {
@@ -35,7 +37,7 @@ const quotesController = {
                     console.error(err);
                     return;
                 };
-                res.send({message: "to-do deleted"});
+                res.send({message: "Deleted"});
             }
         );
     }
