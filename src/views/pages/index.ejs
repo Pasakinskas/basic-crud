@@ -13,12 +13,12 @@
       <div class="text-center row">
         <h1>My to-do list:</h1>
         <div class="col-md-4"></div>
-        <ul class="data-list col-md-4">
+        <ul class="data-list col-md-4" id="quotesList">
         <% for(let i=0; i<quotes.length; i++) {%>
           <li class="row data-li">
             <div class="col-xs-3"><span><%= quotes[i].name %></span></div>
             <div class="col-xs-6"><span><%= quotes[i].quote %></span></div>
-            <div class="col-xs-3"><button class="btn btn-delete" id="<%= quotes[i]._id %>">Solve!</button></div>
+            <div class="col-xs-3"><button class="btn btn-delete" data-id="<%= quotes[i]._id %>">Solve!</button></div>
           </li>
         <% } %>
         </ul>
@@ -26,16 +26,16 @@
 
       <div class="text-center block">
         <h2>Add a new To-do here:</h2>
-        <form action="/quotes" method="POST">
-          <input type="text" placeholder="name" name="name">
-          <input type="text" placeholder="quote" name="quote">
+        <form action="/quotes" method="POST" id="saveQuote">
+          <input type="text" placeholder="name" name="name" required>
+          <input type="text" placeholder="quote" name="quote" required>
           <button type="submit">Submit</button>
         </form>
     </div>
 
       <div class="text-center block">
         <h2>Magical button of replacement</h2>
-        <p>(Replaces cooking tasks, because they dont require effort)</p>
+        <p>(Replaces cooking tasks, because they dont require willpower)</p>
         <button id="update">Activate!</button>
       </div>
 

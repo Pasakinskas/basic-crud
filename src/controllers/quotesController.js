@@ -2,20 +2,21 @@ const ObjectId = require('mongodb').ObjectId;
 
 const quotesController = {
     postQuote(req, res) {
-        req.app.get('db').collection('crud-example').save(req.body,
-            (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                };
-                console.log('Saved successfuly');
-                res.redirect('/');
-            }
-        );
+        req.app.get('db').quotes.save(req.body, (err, result) => {
+            if (err) {
+                console.error(err);
+                res.sendStatus(500);
+                return;
+            };
+            res.json({
+                message: 'Saved!',
+                data: req.body,
+            });
+        });
     },
 
     replaceQuote(req, res) {
-        req.app.get('db').collection('crud-example').findOneAndUpdate({name: 'cook'}, {$set: {
+        req.app.get('db').quotes.findOneAndUpdate({name: 'cook'}, {$set: {
             name: req.body.name,
             quote: req.body.quote
         }}, 
@@ -23,21 +24,29 @@ const quotesController = {
             (err, result) => {
                 if (err) {
                     console.error(err);
+                    res.sendStatus(500);
                     return;
                 };
-                res.send({message: "replaced!"});
+                res.json({
+                    message: "replaced!",
+                    data: req.body,
+                });
             }
         );
     },
 
     deleteQuote(req, res) {
-        req.app.get('db').collection('crud-example').findOneAndDelete({'_id': ObjectId(req.body._id)},
+        req.app.get('db').quotes.findOneAndDelete({_id: ObjectId(req.params.id)},
             (err, result) => {
                 if (err) {
                     console.error(err);
+                    res.sendStatus(500);
                     return;
                 };
-                res.send({message: "Deleted"});
+                res.json({
+                    message: "Deleted!",
+                    data: req.body,
+                });
             }
         );
     }
