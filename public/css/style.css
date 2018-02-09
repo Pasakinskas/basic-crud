@@ -24,3 +24,19 @@ list-style-type: none;
 .block {
     padding: 0 25px 25px 25px;
 }
+
+.warning {
+    border: 2px solid #a50e0e;
+}
+
+.on-demand {
+    visibility: hidden;
+}
+
+#explain-form-error {
+    color: #a50e0e;
+}
+
+.todo-name {
+    width: 100%;
+}

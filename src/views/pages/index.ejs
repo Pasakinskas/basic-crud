@@ -16,8 +16,8 @@
         <ul class="data-list col-md-4" id="quotesList">
         <% for(let i=0; i<quotes.length; i++) {%>
           <li class="row data-li">
-            <div class="col-xs-3"><span><%= quotes[i].name %></span></div>
-            <div class="col-xs-6"><span><%= quotes[i].quote %></span></div>
+            <div class="col-xs-3 todo-name"><span><%= quotes[i].name %></span></div>
+            <div class="col-xs-6 todo-body"><span><%= quotes[i].quote %></span></div>
             <div class="col-xs-3"><button class="btn btn-delete" data-id="<%= quotes[i]._id %>">Solve!</button></div>
           </li>
         <% } %>
@@ -27,9 +27,10 @@
       <div class="text-center block">
         <h2>Add a new To-do here:</h2>
         <form action="/quotes" method="POST" id="saveQuote">
-          <input type="text" placeholder="name" name="name" required>
-          <input type="text" placeholder="quote" name="quote" required>
+          <input class="my-textbox" type="text" placeholder="name" name="name" required>
+          <input class="my-textbox" type="text" placeholder="quote" name="quote" required>
           <button type="submit">Submit</button>
+          <p class="on-demand" id="explain-form-error">Please only use lowercase letters and keep special symbols to ? and !</p>
         </form>
     </div>
 
