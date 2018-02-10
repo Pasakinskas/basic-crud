@@ -1,15 +1,41 @@
-.main-header {
-    background-color: #d7d7d7;
+.page-body {
+    /* background-color: rgb(255, 235, 205); */
+    height: 800px;
+    overflow: hidden;
+}
+
+/* ---Begin Header--- */
+.main-header  {
+    background-color: #141111;
     width: 100%;
     border-radius: 2px;
+    margin-bottom: 5px;
   }
+
+.menu-link {
+    color: #b74a4a;
+    padding-right: 45px;
+    font-size: 14px;
+}
+
+/* ---End Header--- */
+
+/* ---Begin Work Banner--- */
+.large-img-box {
+    height: 0px;
+}
+
+body .large-img {
+    opacity: 0.3;
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* ---End Work Banner--- */
 
 .footer-links {
     padding: 10px 0 5px 25px;
-}
-
-.page-body {
-    background-color: blanchedalmond;
 }
 
 .data-list {
@@ -38,5 +64,5 @@ list-style-type: none;
 }
 
 .todo-name {
-    width: 100%;
+    max-width: 100%;
 }

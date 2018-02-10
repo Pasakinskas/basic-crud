@@ -18,7 +18,7 @@ function addUpdateListener(button) {
       for (const span of spanList) {
         if (span.innerText === "cook") {
           span.innerText = "Hobby"; // cant find classes todo-name/body if I parentnode.parentnode
-          let cookBody = span.parentNode.parentNode.firstChild.nextSibling.nextSibling.firstChild;
+          const cookBody = span.parentNode.parentNode.firstChild.nextSibling.nextSibling.firstChild;
           cookBody.innerText = "is too fun to be on this list";
           break;
         }
@@ -75,6 +75,10 @@ function addUppercaseListener(textbox) {
       textbox.classList.add('warning');
       textbox.parentNode.querySelector('#explain-form-error').classList.remove('on-demand');
     }
+    window.setTimeout(() => {
+      textbox.classList.remove('warning');
+      textbox.parentNode.querySelector('#explain-form-error').classList.add('on-demand');
+    }, 2500);
   });
 }
 
