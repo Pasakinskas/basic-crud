@@ -4,56 +4,65 @@
   <head>
     <% include ../partials/head %>
   </head>
+
   <body class="container page">
     <header>
       <% include ../partials/header %>
     </header>
     
     <main class="page-body">
-      <div class="jumbotron">
-        <h1>hello</h1>
-        <h1>hello</h1>
+
+      <div class="todo-wrapper">
+
+        <div class=large-img-box>
+          <img class="large-img img img-responsive" src="/static/img/bckgrnd-work.png"/>
+        </div>
+
+        <div class="jumbotron text-center">
+          <h1>Welcome to my website</h1>
+        </div>
+
+        <div class="text-center block">
+          <h2>My to-do list:</h2>
+          <ul class="data-ul text-center" id="quotesList">
+          <% for(let i=0; i<quotes.length; i++) {%>
+            <li class="row data-li">
+              <div class="col-xs-3 todo-name"><span><%= quotes[i].name %></span></div>
+              <div class="col-xs-6 todo-body"><span><%= quotes[i].quote %></span></div>
+              <div class="col-xs-3"><button class="btn btn-delete" data-id="<%= quotes[i]._id %>">Solve!</button></div>
+            </li>
+          <% } %>
+          </ul>
+        </div>
+
+        <div class="text-center block">
+          <h2>Add a new To-do here:</h2>
+          <form action="/quotes" method="POST" id="saveQuote">
+            <input class="my-textbox" type="text" placeholder="name" name="name" required>
+            <input class="my-textbox" type="text" placeholder="quote" name="quote" required>
+            <button type="submit">Submit</button>
+            <p class="on-demand" id="explain-form-error">Please only use lowercase letters and keep special symbols to ? and !</p>
+          </form>
+
+          <div class="text-center block">
+              <h2>Magical button of replacement</h2>
+              <p>(Replaces cooking tasks, because they dont require willpower)</p>
+              <button id="update">Activate!</button>
+            </div>
+          </div>
+          
       </div>
 
-      <div class=large-img-box>
-        <img class="large-img img img-responsive" src="https://www.elcomcms.com/Images/UserUploadedImages/32086/12-Key-Business-Processes-That-Put-Your-Intranet-to-Work-Background-Image.png"/>
-      </div>
+      <div class="etc-wrapper">
 
-      <div class="text-center row">
-        <h2>My to-do list:</h2>
-        <div class="col-md-4"></div>
-        <ul class="data-list col-md-4" id="quotesList">
-        <% for(let i=0; i<quotes.length; i++) {%>
-          <li class="row data-li">
-            <div class="col-xs-3 todo-name"><span><%= quotes[i].name %></span></div>
-            <div class="col-xs-6 todo-body"><span><%= quotes[i].quote %></span></div>
-            <div class="col-xs-3"><button class="btn btn-delete" data-id="<%= quotes[i]._id %>">Solve!</button></div>
-          </li>
-        <% } %>
-        </ul>
-      </div>
-
-      <div class="text-center block">
-        <h2>Add a new To-do here:</h2>
-        <form action="/quotes" method="POST" id="saveQuote">
-          <input class="my-textbox" type="text" placeholder="name" name="name" required>
-          <input class="my-textbox" type="text" placeholder="quote" name="quote" required>
-          <button type="submit">Submit</button>
-          <p class="on-demand" id="explain-form-error">Please only use lowercase letters and keep special symbols to ? and !</p>
-        </form>
-    </div>
-
-      <div class="text-center block">
-        <h2>Magical button of replacement</h2>
-        <p>(Replaces cooking tasks, because they dont require willpower)</p>
-        <button id="update">Activate!</button>
       </div>
 
       <script src="/static/main.js"></script>
-  </main>
+    </main>
 
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+    <footer>
+      <% include ../partials/footer %>
+    </footer>
   </body>
+
 </html>

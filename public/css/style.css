@@ -1,68 +1,85 @@
 .page-body {
-    /* background-color: rgb(255, 235, 205); */
-    height: 800px;
-    overflow: hidden;
+    visibility: visible;
 }
 
-/* ---Begin Header--- */
-.main-header  {
-    background-color: #141111;
-    width: 100%;
-    border-radius: 2px;
-    margin-bottom: 5px;
-  }
-
-.menu-link {
-    color: #b74a4a;
-    padding-right: 45px;
-    font-size: 14px;
-}
-
-/* ---End Header--- */
-
-/* ---Begin Work Banner--- */
-.large-img-box {
-    height: 0px;
-}
-
-body .large-img {
-    opacity: 0.3;
-    position: relative;
-    overflow: hidden;
-    z-index: -1;
-}
-
-/* ---End Work Banner--- */
-
-.footer-links {
-    padding: 10px 0 5px 25px;
-}
-
-.data-list {
-list-style-type: none;
-}
-
-.data-li {
-    border: 2px solid wheat;
-    margin-top: 2px;
+.todo-wrapper {
+    visibility: visible;
 }
 
 .block {
     padding: 0 25px 25px 25px;
 }
 
+/* --=Begin Header=-- */
+.main-header  {
+    background-color: #141111;
+    width: 100%;
+    border-radius: 0;
+    line-height: 2;
+  }
+
+#logo-container {
+    display: inline-block;
+    max-height: 65px;
+}
+
+#main-logo-img {
+    max-height: 80px;
+    padding-bottom: 20px;
+}
+
+.menu-link {
+    color: #b74a4a;
+    font-size: 14px;
+    padding: 0 65px 10px 0;
+}
+
+#header {
+    margin-bottom: 5px;
+}
+/* --=End Header=-- */
+
+/* --=Begin Work Banner=-- */
+.jumbotron {
+    background: none;
+}
+
+.large-img-box {
+    height: 0px;
+}
+
+body .large-img {
+    opacity: 0.2;
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+}
+/* --=End Work Banner=-- */
+
+/* --=Begin Unordered To-Do list=-- */
+.data-ul {
+    list-style-type: none;
+    display: block;
+    padding: 0;
+}
+
+.data-li {
+    border: 2px solid #181717;
+    margin: 0 auto 2px;
+    max-width: 50%;
+}
+
 .warning {
     border: 2px solid #a50e0e;
+    color: #a50e0e;
 }
 
 .on-demand {
     visibility: hidden;
 }
+/* --=End Unordered To-Do list=-- */
 
-#explain-form-error {
-    color: #a50e0e;
-}
-
-.todo-name {
-    max-width: 100%;
+/* --=Begin Footer=-- */
+.footer-links {
+    padding: 10px 0 5px 25px;
 }

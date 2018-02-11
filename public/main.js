@@ -29,22 +29,6 @@ function addUpdateListener(button) {
 
 addUpdateListener(updateButton);
 
-// updateButton.addEventListener('click', () => {
-//     fetch('quotes', {
-//         method: 'put',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify({
-//           name: 'Hobby',
-//           quote: ' is too fun to be on the list',
-//         })
-//       }).then(res => {
-//         if (res.ok) return res.json()
-//       }).then(data => {
-//         console.log(data)
-//         window.location.reload(true)
-//     })
-// });
-
 document.querySelector('#saveQuote').addEventListener('submit', async event => {
   event.preventDefault();
   const form = event.currentTarget; // == document.querySelector('#saveQuote') ?
