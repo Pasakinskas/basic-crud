@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <header>
+            <% include ../partials/header %>
+        </header>
+
+        <main>
+            <div class="text-center block">
+            <form action="/money" method="POST" id="save-expense">
+                <input type=text  placeholder="Expense Name" required></input>
+                <input type="number" placeholder="Amount" required></input>
+                <input type="datetime-local" placeholder="Date" required default=""></input>
+                <input type></input>
+                <input list="browsers" placeholder="pick your option!">
+                    <datalist id="browsers">
+                        <option value="Chrome">
+                        <option value="Firefox">
+                        <option value="Internet Explorer">
+                        <option value="Opera">
+                        <option value="Safari">
+                        <option value="Microsoft Edge">
+                    </datalist>
+                </input>
+                <button type="submit" class="btn btn-primary">Submit!</button>
+            </form>
+            </div>
+        </main>
+
+        <footer>
+            <% include ../partials/footer %>
+        </footer>
+    </body>
+
+</html>

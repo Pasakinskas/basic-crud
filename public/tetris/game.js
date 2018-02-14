@@ -226,17 +226,18 @@ class Game {
         }
         if (rowsToClear.length > 0) {
             this.clear(rowsToClear, board);
-            return this.assignPoints(rowsToClear.length);
+            this.points += this.assignPoints(rowsToClear.length);
+            return;
         }
         else {
             return 0;
         }
     }
 
-    getScore (points) {
+    getScore () {
         var output = document.getElementById("game-output");
         output.innerHTML = "";
-        output.innerHTML += points + " pts";
+        output.innerHTML += this.points + " pts";
     }
 
     movement () {
@@ -260,8 +261,8 @@ class Game {
             }
             this.tetrimino = this.moveTetrimino(this.tetrimino, "down");
             if (!this.tetrimino) {
-                this.points = this.points + this.clearFullRows();
-                this.getScore(points);
+                this.clearFullRows();
+                this.getScore();
             }
             this.drawPlayers();
         }

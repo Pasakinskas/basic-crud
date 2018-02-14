@@ -26,6 +26,10 @@
     padding: 0 25px 25px 25px;
 }
 
+#game-output {
+    height: 40px;
+}
+
 /* --=Begin Header=-- */
 .main-header  {
     background-color: #141111;

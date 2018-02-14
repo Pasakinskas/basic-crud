@@ -2,9 +2,9 @@ const updateButton = document.getElementById('update');
 const deleteItemButton = document.getElementsByClassName('btn-delete');
 const textAreas = document.getElementsByClassName('my-textbox');
 
-function addUpdateListener(button) {
+function addUpdateListener(button) { //!!!
   button.addEventListener('click', () => {
-    fetch('quotes', {
+    fetch('cookQuote', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -18,7 +18,7 @@ function addUpdateListener(button) {
       for (const span of spanList) {
         if (span.innerText === "cook") {
           span.innerText = "Hobby"; // cant find classes todo-name/body if I parentnode.parentnode
-          const cookBody = span.parentNode.parentNode.firstChild.nextSibling.nextSibling.firstChild;
+          const cookBody = span.parentNode.parentNode.firstChild.nextElementSibling.firstChild;
           cookBody.innerText = "is too fun to be on this list";
           break;
         }
@@ -27,27 +27,28 @@ function addUpdateListener(button) {
   });
 }
 
-addUpdateListener(updateButton);
-
-document.querySelector('#saveQuote').addEventListener('submit', async event => {
+document.querySelector('#save-quote').addEventListener('submit', async event => {
   event.preventDefault();
-  const form = event.currentTarget; // == document.querySelector('#saveQuote') ?
+  const form = event.currentTarget;
   const body = {
     name: form.querySelector('[name=name]').value,
     quote: form.querySelector('[name=quote]').value,
   };
-  const blob = await fetch('quotes', { // by my logic, i put it in /quotes, but take it out of /quotes:id
+  const blob = await fetch('quotes', {
     method: 'post',
     headers: new Headers({'Content-Type': 'application/json'}),
     body: JSON.stringify(body),
   });
-  form.reset(); // Deletes the text, that I've written into my form element
+  
+  form.reset();
+
   const res = await blob.json(); //Get blob, send back blob.json? What?
   const newQuote = document.createElement('li');
   newQuote.classList.add('row', 'data-li');
-  newQuote.innerHTML = `<div class="col-xs-3"><span>${res.data.name}</span></div>
-  <div class="col-xs-6"><span>${res.data.quote}</span></div>
-  <div class="col-xs-3"><button class="btn btn-delete" data-id="${res.data._id}">Solve!</button></div>`;
+  newQuote.innerHTML = `<div class="col-xs-3 todo todo-name"><span>${res.data.name}</span></div>
+  <div class="col-xs-6 todo todo-body"><span>${res.data.quote}</span></div>
+  <div class="col-xs-3 todo"><button class="btn btn-delete" data-id="${res.data._id}">Solve!</button></div>`;
+
   document.querySelector('#quotesList').appendChild(newQuote);
   addDeleteListener(newQuote.querySelector('button'));
 });
@@ -87,3 +88,5 @@ for (const item of deleteItemButton) {
 for (const item of textAreas) {
   addUppercaseListener(item);
 };
+
+addUpdateListener(updateButton);

@@ -25,8 +25,12 @@ app.get('/tetris', (req, res) => {
     res.render('pages/tetris.ejs');
 });
 
+app.get('/money', (req, res) => {
+    res.render('pages/moneyTracker.ejs');
+});
+
 app.post('/quotes', quotesController.postQuote);
-app.put('/quotes', quotesController.replaceQuote);
+app.put('/cookQuote', quotesController.replaceQuote);
 app.delete('/quotes/:id', quotesController.deleteQuote);
 
 app.set('db', database.quotes);
