@@ -13,11 +13,9 @@
     <main class="page-body">
 
       <div class="todo-wrapper">
-
         <div class="jumbotron text-center">
           <h1>Welcome to my website</h1>
         </div>
-
         <div class="text-center block">
           <h2>My to-do list:</h2>
           <ul class="data-ul text-center" id="quotesList">
@@ -30,7 +28,6 @@
           <% } %>
           </ul>
         </div>
-
         <div class="text-center block">
           <h2>Add a new To-do here:</h2>
           <form action="/quotes" method="POST" id="save-quote">
@@ -39,20 +36,40 @@
             <button type="submit">Submit</button>
             <p class="on-demand" id="explain-form-error">Please only use lowercase letters and keep special symbols to ? and !</p>
           </form>
-
           <div class="text-center block">
               <h2>Magical button of replacement</h2>
               <p>(Replaces cooking tasks, because they dont require willpower)</p>
               <button id="update">Activate!</button>
             </div>
+          </div> 
+      </div>
+
+      <div class="mid-btn-section">
+        <div class="row text-center">
+          <div class="col-md-6">
+            <button class="btn btn-lg" id="mid-section-button">Click me!</button>
           </div>
-          
+          <div class="col-md-6">
+            <p>I will tell you about awesome stuff which will happen, when you'll click that button</p>
+          </div>
+        </div>
       </div>
 
       <div class="etc-wrapper">
         <div class="jumbotron">
           <h1>A new adventure</h1>
-          <p>(Under construction! drop by once in a while!)</p>
+          <% include ../partials/bpi %>
+        </div>
+      </div>
+
+      <div class="etc-wrapper">
+        <div class="jumbotron">
+          <h1>SALTY CHAT</h1>
+          <form id="chat-form">
+            <input name="message" required>
+            <button type="submit">Send</button>
+          </form>
+          <ul class="messages"></ul>
         </div>
       </div>
 
@@ -62,6 +79,7 @@
     <footer>
       <% include ../partials/footer %>
     </footer>
+    
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>

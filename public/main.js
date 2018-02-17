@@ -1,8 +1,16 @@
-const updateButton = document.getElementById('update');
-const deleteItemButton = document.getElementsByClassName('btn-delete');
-const textAreas = document.getElementsByClassName('my-textbox');
+function addBtcPriceListener(button) {
+  button.addEventListener('click', async () => {
+    const currency = document.querySelector('input[name="currency"]:checked').value;
+    const link = "https://api.coindesk.com/v1/bpi/currentprice/"+ currency + ".json";
+    const blob = await fetch(link, {method: 'get'});
+    const res = await blob.json();
+    const rate = res.bpi[currency.toUpperCase()].rate;
+    
+    document.querySelector("#price-box").firstChild.innerText = rate;
+  })
+}
 
-function addUpdateListener(button) { //!!!
+function addUpdateListener(button) {
   button.addEventListener('click', () => {
     fetch('cookQuote', {
       method: 'put',
@@ -17,7 +25,7 @@ function addUpdateListener(button) { //!!!
       const spanList = document.querySelectorAll('li.data-li span');
       for (const span of spanList) {
         if (span.innerText === "cook") {
-          span.innerText = "Hobby"; // cant find classes todo-name/body if I parentnode.parentnode
+          span.innerText = "Hobby";
           const cookBody = span.parentNode.parentNode.firstChild.nextElementSibling.firstChild;
           cookBody.innerText = "is too fun to be on this list";
           break;
@@ -27,31 +35,32 @@ function addUpdateListener(button) { //!!!
   });
 }
 
-document.querySelector('#save-quote').addEventListener('submit', async event => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const body = {
-    name: form.querySelector('[name=name]').value,
-    quote: form.querySelector('[name=quote]').value,
-  };
-  const blob = await fetch('quotes', {
-    method: 'post',
-    headers: new Headers({'Content-Type': 'application/json'}),
-    body: JSON.stringify(body),
+function addSubmitQuoteListener(button) {
+  button.addEventListener('submit', async event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const body = {
+      name: form.querySelector('[name=name]').value,
+      quote: form.querySelector('[name=quote]').value,
+    };
+    const blob = await fetch('quotes', {
+      method: 'post',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      body: JSON.stringify(body),
+    });
+    const res = await blob.json();
+    const newQuote = document.createElement('li');
+
+    form.reset();
+    newQuote.classList.add('row', 'data-li');
+    newQuote.innerHTML = `<div class="col-xs-3 todo todo-name"><span>${res.data.name}</span></div>
+    <div class="col-xs-6 todo todo-body"><span>${res.data.quote}</span></div>
+    <div class="col-xs-3 todo"><button class="btn btn-delete" data-id="${res.data._id}">Solve!</button></div>`;
+
+    document.querySelector('#quotesList').appendChild(newQuote);
+    addDeleteListener(newQuote.querySelector('button'));
   });
-  
-  form.reset();
-
-  const res = await blob.json(); //Get blob, send back blob.json? What?
-  const newQuote = document.createElement('li');
-  newQuote.classList.add('row', 'data-li');
-  newQuote.innerHTML = `<div class="col-xs-3 todo todo-name"><span>${res.data.name}</span></div>
-  <div class="col-xs-6 todo todo-body"><span>${res.data.quote}</span></div>
-  <div class="col-xs-3 todo"><button class="btn btn-delete" data-id="${res.data._id}">Solve!</button></div>`;
-
-  document.querySelector('#quotesList').appendChild(newQuote);
-  addDeleteListener(newQuote.querySelector('button'));
-});
+}
 
 function addUppercaseListener(textbox) {
   textbox.addEventListener('keypress', (event) => {
@@ -67,7 +76,7 @@ function addUppercaseListener(textbox) {
   });
 }
 
-function addDeleteListener (button) {
+function addDeleteListener(button) {
   button.addEventListener('click', () => {
     fetch(`quotes/${button.getAttribute('data-id')}`, {
       method: 'delete',
@@ -81,12 +90,42 @@ function addDeleteListener (button) {
   })
 };
 
-for (const item of deleteItemButton) {
-  addDeleteListener(item);
-};
+function initWebsockets () {
+  const socket = new WebSocket('ws://localhost:3001');
+  socket.onopen = () => console.log('ws connected');
 
-for (const item of textAreas) {
-  addUppercaseListener(item);
-};
+  const form = document.getElementById('chat-form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = form.querySelector('[name=message]').value;
+    socket.send(text);
+  });
 
-addUpdateListener(updateButton);
+  socket.onmessage = message => {
+    document.querySelector('.messages').innerHTML += `<li>${message.data}</li>`;
+  }
+}
+
+function init() {
+  const updateButton = document.getElementById('update');
+  const deleteItemButton = document.getElementsByClassName('btn-delete');
+  const textAreas = document.getElementsByClassName('my-textbox');
+  const btcPriceButton = document.getElementById("btn-btc-price");
+  const submitQuotesButton = document.querySelector('#save-quote');
+  
+  addSubmitQuoteListener(submitQuotesButton);
+  addUpdateListener(updateButton);
+  addBtcPriceListener(btcPriceButton);
+  
+  for (const item of deleteItemButton) {
+    addDeleteListener(item);
+  };
+  
+  for (const item of textAreas) {
+    addUppercaseListener(item);
+  };
+
+  initWebsockets();
+}
+
+init();

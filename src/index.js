@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const ws = require('ws');
+
 const quotesController = require('./controllers/quotesController');
 const database = require('./database');
 
@@ -33,8 +35,6 @@ app.post('/quotes', quotesController.postQuote);
 app.put('/cookQuote', quotesController.replaceQuote);
 app.delete('/quotes/:id', quotesController.deleteQuote);
 
-app.set('db', database.quotes);
-
 database.connect((err, db) => {
     if (err) {
         console.error('Failed to initialize database', err);
@@ -44,4 +44,25 @@ database.connect((err, db) => {
     app.listen(3000, () => {
         console.log('listening on 3000');
     });
+});
+
+const wss = new ws.Server({ port: 3001 });
+
+wss.broadcast = function broadcast(data) {
+    wss.clients.forEach((client) => {
+        if (client.readyState === ws.OPEN) {
+            client.send(data);
+        }
+    });
+};
+
+wss.on('connection', connection => {
+    connection.on('message', messageContent => {
+        wss.broadcast(messageContent);
+    });
+    connection.on('error', err => console.error(err));
+});
+
+wss.on('error', err => {
+    console.error(err);
 });

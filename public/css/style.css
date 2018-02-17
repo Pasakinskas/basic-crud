@@ -6,6 +6,10 @@
    position: relative;
 }
 
+.etc-wrapper {
+    background-color: blanchedalmond;
+}
+
 .todo-wrapper::after {
     content : "";
     display: block;
@@ -13,7 +17,7 @@
     top: 0;
     left: 0;
     background-image: url("/static/img/bckgrnd-work.png");
-    background-color: red;
+    background-color:orange;
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
@@ -28,6 +32,10 @@
 
 #game-output {
     height: 40px;
+}
+
+#price-box {
+    height: 100px;
 }
 
 /* --=Begin Header=-- */
@@ -103,6 +111,25 @@ body .large-img {
     visibility: hidden;
 }
 /* --=End Unordered To-Do list=-- */
+
+/* --=Begin middle banner=-- */
+
+.mid-btn-section {
+    background-color: #141111;
+    /* background-image: url("/static/img/mid-bar-font.jpg"); */
+    color: white;
+    font-size: 16px;
+    height: 60px;
+}
+
+#mid-section-button {
+    border-radius: 3px;
+    background-color: maroon;
+    margin-top: 7px;
+    border: 2px solid #470909;
+}
+
+/* --=End middle banner=-- */
 
 /* --=Begin Footer=-- */
 .footer-links {
