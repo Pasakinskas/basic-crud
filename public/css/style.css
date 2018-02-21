@@ -30,6 +30,10 @@
     padding: 0 25px 25px 25px;
 }
 
+#money-form-column {
+    width: 250px;
+}
+
 #game-output {
     height: 40px;
 }
@@ -116,7 +120,6 @@ body .large-img {
 
 .mid-btn-section {
     background-color: #141111;
-    /* background-image: url("/static/img/mid-bar-font.jpg"); */
     color: white;
     font-size: 16px;
     height: 60px;

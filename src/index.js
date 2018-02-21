@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const ws = require('ws');
 
 const quotesController = require('./controllers/quotesController');
+const moneyController = require('./controllers/moneyController');
 const database = require('./database');
 
 app.set('view engine', 'ejs');
@@ -34,6 +35,8 @@ app.get('/money', (req, res) => {
 app.post('/quotes', quotesController.postQuote);
 app.put('/cookQuote', quotesController.replaceQuote);
 app.delete('/quotes/:id', quotesController.deleteQuote);
+
+app.post('/money', moneyController.postExpense);
 
 database.connect((err, db) => {
     if (err) {

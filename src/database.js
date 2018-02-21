@@ -10,6 +10,7 @@ function connect(callback) {
         const db = connection.db('crud-tutorial');
         callback(null, {
             quotes: db.collection('crud-example'),
+            moneyTracker: db.collection('financial-tracker'),
         });
     });
 }

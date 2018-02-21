@@ -11,30 +11,29 @@
         </header>
 
         <main>
-            <div class="text-center block">
-            <form action="/money" method="POST" id="save-expense">
-                <input type=text  placeholder="Expense Name" required></input>
-                <input type="number" placeholder="Amount" required></input>
-                <input type="datetime-local" placeholder="Date" required default=""></input>
-                <input type></input>
-                <input list="browsers" placeholder="pick your option!">
-                    <datalist id="browsers">
-                        <option value="Chrome">
-                        <option value="Firefox">
-                        <option value="Internet Explorer">
-                        <option value="Opera">
-                        <option value="Safari">
-                        <option value="Microsoft Edge">
-                    </datalist>
-                </input>
-                <button type="submit" class="btn btn-primary">Submit!</button>
-            </form>
+            <div class="block" id="money-form-column">
+                <form action="/money" method="POST" id="save-expense">
+                    <input type=text  placeholder="Expense Name" name="expense-name" required></input>
+                    <input type="number" placeholder="Amount" name="amount" required></input>
+                    <input type="text" placeholder="comment" name="comment"></input>
+                    <input list="category" placeholder="pick category" name="category">
+                        <datalist id="category">
+                            <option value="Food">
+                            <option value="Leisure or hobby">
+                            <option value="Unavoidable tax">
+                            <option value="Cleaning or toiletries">
+                        </datalist>
+                    </input>
+                    <input type="date" placeholder="Date" name="date" required></input>
+                    <button type="submit" class="btn btn-primary" id="post-expense">Submit!</button>
+                </form>
             </div>
         </main>
 
         <footer>
             <% include ../partials/footer %>
         </footer>
+        <script src="/static/finance.js"></script>
     </body>
 
 </html>
