@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const ws = require('ws');
+const moment = require('moment'); //ask about that deprecation thing.
 
 const quotesController = require('./controllers/quotesController');
 const moneyController = require('./controllers/moneyController');
@@ -29,7 +30,10 @@ app.get('/tetris', (req, res) => {
 });
 
 app.get('/money', (req, res) => {
-    res.render('pages/moneyTracker.ejs');
+    const dateVal = moment().format("YYYY-MM-DD");
+    res.render('pages/moneyTracker.ejs', {
+        date: dateVal,
+    });
 });
 
 app.post('/quotes', quotesController.postQuote);

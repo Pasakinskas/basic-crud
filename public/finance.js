@@ -1,6 +1,4 @@
-const financeForm = document.getElementById("save-expense");
-
-function addFinanceListener(btn) {
+function addFinanceListener(btn) { //naming
     btn.addEventListener('submit', async event => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -16,9 +14,20 @@ function addFinanceListener(btn) {
             body: JSON.stringify({body}),
         });
         const res = await blob.json();
-        console.log(res);
         form.reset();
+        // addToList(res);
     });
 }
 
-addFinanceListener(financeForm);
+function addToList(item) {
+    //this will add the newly entered finance log to the list.
+    console.log(item);
+    // return;
+}
+
+function init() {
+    const financeForm = document.getElementById("save-expense");
+    addFinanceListener(financeForm);
+}
+
+init();

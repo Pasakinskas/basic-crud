@@ -10,9 +10,9 @@
             <% include ../partials/header %>
         </header>
 
-        <main>
+        <main> <!-- should a form have post method, action=/money??? -->
             <div class="block" id="money-form-column">
-                <form action="/money" method="POST" id="save-expense">
+                <form id="save-expense">
                     <input type=text  placeholder="Expense Name" name="expense-name" required></input>
                     <input type="number" placeholder="Amount" name="amount" required></input>
                     <input type="text" placeholder="comment" name="comment"></input>
@@ -24,7 +24,7 @@
                             <option value="Cleaning or toiletries">
                         </datalist>
                     </input>
-                    <input type="date" placeholder="Date" name="date" required></input>
+                    <input type="date" name="date" required value="<%=date %>"></input>
                     <button type="submit" class="btn btn-primary" id="post-expense">Submit!</button>
                 </form>
             </div>
